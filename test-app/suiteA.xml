@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteElaborationBudbetaire">
+	<!-- suite name="Suite Name" -->
+	<test name="TestCalandrierBudgetaire" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class
+				name="gov.bf.dgsi.nafolo.tests.elaboration.depenses.parametrage.TestCalandrierBudgetaire" />
+		</classes>
+	</test>
+	<test name="TestReferentielDeDevNat" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class
+				name="gov.bf.dgsi.nafolo.tests.elaboration.depenses.parametrage.TestReferentielDeDevNat" />
+		</classes>
+	</test>
+
+	<test name="TestClassificationAdministrative"
+		allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class
+				name="gov.bf.dgsi.nafolo.tests.elaboration.depenses.parametrage.TestClassificationAdministrative" />
+		</classes>
+	</test>
+
+	<test name="test" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class name="gov.bf.dgsi.nafolo.tests.TestEngagement" />
+		</classes>
+	</test>
+</suite>

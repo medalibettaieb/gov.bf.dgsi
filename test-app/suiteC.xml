@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteC">
+	<!-- suite name="Suite Name" -->
+	<test name="TestC1" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class name="com.qtpselenium.suiteC.TestCaseC1" />
+		</classes>
+	</test>
+	<test name="TestC2" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class name="com.qtpselenium.suiteC.TestCaseC2" />
+		</classes>
+	</test>
+</suite>
