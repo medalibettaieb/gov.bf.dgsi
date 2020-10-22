@@ -51,73 +51,69 @@ public class TestCalandrierBudgetaire {
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("test123");
 		driver.findElement(By.id("kc-login")).click();
-
 		waitForElementVisibility("//app-menu/ul/li[2]/a/span").click();
-		driver.findElement(By.xpath("//li[2]/ul/li[3]/a/span")).click();
-		driver.findElement(By.xpath("//li[3]/ul/li/a/span")).click();
-		driver.findElement(By.xpath("//li[3]/ul/li/ul/li/a/span")).click();
-		driver.findElement(By.xpath("//button/span")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[3]")).click();
-		driver.findElement(By.xpath("//p-dialog/div/div/div[2]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[3]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[3]")).clear();
-		driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys("BUDGET ETAT EXERCICE 2025");
-		driver.findElement(By.xpath("(//input[@type='text'])[4]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[4]")).clear();
-		driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("01/01/2025");
-		driver.findElement(By.xpath("//div/div/div/div[3]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).clear();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).sendKeys("31/12/2025");
-		driver.findElement(By.xpath("(//input[@type='text'])[4]")).click();
-		driver.findElement(By.xpath("//div/button[2]/span[2]")).click();
-		driver.findElement(By.xpath("//div/div/div/div[3]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).clear();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).sendKeys("31/12/2025");
-		driver.findElement(By.xpath("//a[2]/span")).click();
+		waitForElementVisibility("//li[2]/ul/li[3]/a/span").click();
+		waitForElementVisibility("//li[3]/ul/li/a/span").click();
+		waitForElementVisibility("//li[3]/ul/li/ul/li/a/span").click();
+		waitForElementVisibility("//button/span").click();
+		waitForElementVisibility("(//input[@type='text'])[3]").click();
+		waitForElementVisibility("//p-dialog/div/div/div[2]").click();
+		waitForElementVisibility("(//input[@type='text'])[3]").click();
+		waitForElementVisibility("(//input[@type='text'])[3]").clear();
+		waitForElementVisibility("(//input[@type='text'])[3]").sendKeys("BUDGET ETAT EXERCICE 2025");
+		Thread.sleep(2000);
+		waitForElementVisibility("(//input[@type='text'])[4]").click();
+		waitForElementVisibility("(//input[@type='text'])[4]").clear();
+		waitForElementVisibility("(//input[@type='text'])[4]").sendKeys("01/01/2025");
+		Thread.sleep(2000);
+		waitForElementVisibility("(//input[@type='text'])[3]").click();
+		Thread.sleep(2000);
+		waitForElementVisibility("(//input[@type='text'])[5]").click();
+		waitForElementVisibility("(//input[@type='text'])[5]").clear();
+		waitForElementVisibility("(//input[@type='text'])[5]").sendKeys("31/12/2025");
+		waitForElementVisibility("(//input[@type='text'])[4]").click();
+		Thread.sleep(2000);
+		waitForElementVisibility("//div/button[2]/span[2]").click();
 	}
 
-	@Test(enabled = false)
+	@Test(priority = 1)
 	public void testCalendrierBudgModify() throws Exception {
 		driver.get(
 				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2F&state=01c67080-b438-4502-a346-545fefc630f7&response_mode=fragment&response_type=code&scope=openid&nonce=248d9350-b756-4df0-8a15-57fd933fd39e");
-		driver.findElement(By.id("username")).click();
-		driver.findElement(By.id("username")).clear();
-		driver.findElement(By.id("username")).sendKeys("sanou@nafolo.bf");
-		driver.findElement(By.id("password")).click();
-		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("test123");
-		driver.findElement(By.id("kc-login")).click();
-		driver.findElement(By.xpath("//app-menu/ul/li[2]/a/span")).click();
-		driver.findElement(By.xpath("//li[2]/ul/li[3]/a/span")).click();
-		driver.findElement(By.xpath("//li[3]/ul/li/a/span")).click();
+		waitForElementVisibility("//app-menu/ul/li[2]/a/span").click();
+		waitForElementVisibility("//li[2]/ul/li[3]/a/span").click();
+		waitForElementVisibility("//li[3]/ul/li/a/span").click();
 		driver.findElement(By.linkText("Calendrier Budgetaire")).click();
-		driver.findElement(By.xpath("//tr[2]/td[5]/button/span")).click();
-		driver.findElement(By.xpath("//td[4]/p-celleditor/p-calendar/span")).click();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).clear();
-		driver.findElement(By.xpath("(//input[@type='text'])[5]")).sendKeys("20/12/2025");
-		driver.findElement(By.xpath("//tr[2]/td[5]/button/span")).click();
-		driver.findElement(By.xpath("//a[2]/span")).click();
+		Thread.sleep(2000);
+		waitForElementVisibility(
+				"/html/body/app-root/app-main/div/div/div[2]/div/app-calendrier-budgetaire/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[5]/button[1]")
+						.click();
+		waitForElementVisibility("//td[4]/p-celleditor/p-calendar/span").click();
+		waitForElementVisibility("(//input[@type='text'])[5]").clear();
+		waitForElementVisibility("(//input[@type='text'])[5]").sendKeys("20/12/2025");
+		waitForElementVisibility(
+				"/html/body/app-root/app-main/div/div/div[2]/div/app-calendrier-budgetaire/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[1]/p-celleditor")
+						.click();
+		waitForElementVisibility(
+				"/html/body/app-root/app-main/div/div/div[2]/div/app-calendrier-budgetaire/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[5]/button[1]")
+						.click();
 	}
 
-	@Test(enabled = false)
+	@Test(priority = 2)
 	public void testCalendrierBudgDelete() throws Exception {
 		driver.get(
 				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2F&state=564cf9df-5136-47d7-8f1d-a89505833d13&response_mode=fragment&response_type=code&scope=openid&nonce=88d7bf0f-b17a-45b1-822f-fd86a51f81a4");
-		driver.findElement(By.id("username")).click();
-		driver.findElement(By.id("username")).clear();
-		driver.findElement(By.id("username")).sendKeys("sanou@nafolo.bf");
-		driver.findElement(By.id("password")).clear();
-		driver.findElement(By.id("password")).sendKeys("test123");
-		driver.findElement(By.id("kc-login")).click();
-		driver.findElement(By.xpath("//app-menu/ul/li[2]/a/span")).click();
-		driver.findElement(By.xpath("//li[2]/ul/li[3]/a/span")).click();
-		driver.findElement(By.xpath("//li[3]/ul/li/a/span")).click();
-		driver.findElement(By.xpath("//li[3]/ul/li/ul/li/a/span")).click();
-		driver.findElement(By.xpath("//button[2]/span")).click();
-		driver.findElement(By.xpath("//p-footer/button[2]/span[2]")).click();
-		driver.findElement(By.xpath("//a[2]/span")).click();
+		waitForElementVisibility("//app-menu/ul/li[2]/a/span").click();
+		waitForElementVisibility("//li[2]/ul/li[3]/a/span").click();
+		waitForElementVisibility("//li[3]/ul/li/a/span").click();
+		Thread.sleep(2000);
+		waitForElementVisibility("//li[3]/ul/li/ul/li/a/span").click();
+		Thread.sleep(2000);
+		waitForElementVisibility("//button[2]/span").click();
+		Thread.sleep(2000);
+		waitForElementVisibility("//p-footer/button[2]/span[2]").click();
+		Thread.sleep(2000);
+		// waitForElementVisibility("//a[2]/span").click();
 	}
 
 	@AfterClass(alwaysRun = true)
@@ -163,7 +159,7 @@ public class TestCalandrierBudgetaire {
 	}
 
 	private WebElement waitForElementVisibility(String xpath) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 20);
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 
 		return element;
