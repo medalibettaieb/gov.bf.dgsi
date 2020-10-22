@@ -14,11 +14,28 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.ChartLocation;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
 public class TestCalandrierBudgetaire {
+	private ExtentHtmlReporter htmlReporter;
+	private ExtentReports extent;
+	// helps to generate the logs in test report.
+	private ExtentTest test;
 	private WebDriver driver;
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -26,6 +43,9 @@ public class TestCalandrierBudgetaire {
 
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
+
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--disable-notifications");
 		options.addArguments("--start-maximized");
@@ -40,8 +60,33 @@ public class TestCalandrierBudgetaire {
 //		baseUrl = "https://www.google.com/";
 //		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 //	}
-	@Test(priority = 0)
+
+	@BeforeTest
+    public void startReport() {
+    	// initialize the HtmlReporter
+        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") +"/test-output/testReport.html");
+        
+        //initialize ExtentReports and attach the HtmlReporter
+        extent = new ExtentReports();
+        extent.attachReporter(htmlReporter);
+         
+        //To add system or environment info by using the setSystemInfo method.
+//        extent.setSystemInfo("OS", OS);
+//        extent.setSystemInfo("Browser", browser);
+        
+        //configuration items to change the look and feel
+        //add content, manage tests etc
+        htmlReporter.config().setChartVisibilityOnOpen(true);
+        htmlReporter.config().setDocumentTitle("Extent Report Demo");
+        htmlReporter.config().setReportName("Test Report");
+        htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+        htmlReporter.config().setTheme(Theme.STANDARD);
+        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+    }
+
+	@Test(priority = 0, enabled = true)
 	public void testCalendrierBudgRecord() throws Exception {
+		test = extent.createTest("testCalendrierBudgRecord", "PASSED test case");
 		driver.get(
 				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2Felab-calendrier-budgetaire&state=edeca422-4802-4caa-87a1-43d5c54457b1&response_mode=fragment&response_type=code&scope=openid&nonce=4dd5ce98-d6f9-4df0-958b-d6caada99e39");
 		driver.findElement(By.id("username")).click();
@@ -76,7 +121,7 @@ public class TestCalandrierBudgetaire {
 		waitForElementVisibility("//div/button[2]/span[2]").click();
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void testCalendrierBudgModify() throws Exception {
 		driver.get(
 				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2F&state=01c67080-b438-4502-a346-545fefc630f7&response_mode=fragment&response_type=code&scope=openid&nonce=248d9350-b756-4df0-8a15-57fd933fd39e");
@@ -99,7 +144,7 @@ public class TestCalandrierBudgetaire {
 						.click();
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, enabled = false)
 	public void testCalendrierBudgDelete() throws Exception {
 		driver.get(
 				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2F&state=564cf9df-5136-47d7-8f1d-a89505833d13&response_mode=fragment&response_type=code&scope=openid&nonce=88d7bf0f-b17a-45b1-822f-fd86a51f81a4");
@@ -116,8 +161,28 @@ public class TestCalandrierBudgetaire {
 		// waitForElementVisibility("//a[2]/span").click();
 	}
 
+	 @AfterMethod
+	    public void getResult(ITestResult result) {
+	        if(result.getStatus() == ITestResult.FAILURE) {
+	            test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" FAILED ", ExtentColor.RED));
+	            test.fail(result.getThrowable());
+	        }
+	        else if(result.getStatus() == ITestResult.SUCCESS) {
+	            test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" PASSED ", ExtentColor.GREEN));
+	        }
+	        else {
+	            test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" SKIPPED ", ExtentColor.ORANGE));
+	            test.skip(result.getThrowable());
+	        }
+	    }
+	 @AfterTest
+	    public void tearDownR() {
+	    	//to write or update test information to reporter
+	        extent.flush();
+	    }
 	@AfterClass(alwaysRun = true)
 	public void tearDown() throws Exception {
+		extent.flush();
 		driver.quit();
 		String verificationErrorString = verificationErrors.toString();
 		if (!"".equals(verificationErrorString)) {
