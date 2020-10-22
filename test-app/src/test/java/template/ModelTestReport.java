@@ -1,4 +1,4 @@
-package gov.bf.dgsi.nafolo.tests.elaboration.depenses.parametrage;
+package template;
 
 import static org.testng.Assert.fail;
 
@@ -31,7 +31,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class TestReferentielDeDevNat {
+public class ModelTestReport {
 	private ExtentHtmlReporter htmlReporter;
 	private ExtentReports extent;
 	private ExtentTest test;
@@ -65,48 +65,10 @@ public class TestReferentielDeDevNat {
         htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
     }
 
-	@Test(priority = 0, enabled = false)
-	public void testCreationRef() throws Exception {
+	@Test(priority = 0, enabled = true)
+	public void test() throws Exception {
 		test = extent.createTest("testCalendrierBudgRecord", "PASSED test case");
-		driver.get("http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2F&state=1ec044d8-1e93-43f4-b914-6ae54b536a60&response_mode=fragment&response_type=code&scope=openid&nonce=089183db-1263-4e05-97a1-07e2a36e3cc8");
-	    driver.findElement(By.id("username")).click();
-	    driver.findElement(By.id("username")).clear();
-	    driver.findElement(By.id("username")).sendKeys("sanou@nafolo.bf");
-	    driver.findElement(By.id("password")).clear();
-	    driver.findElement(By.id("password")).sendKeys("test123");
-	    driver.findElement(By.id("kc-login")).click();
-	    driver.findElement(By.xpath("//app-menu/ul/li[2]/a/span")).click();
-	    driver.findElement(By.linkText("buildDépenseskeyboard_arrow_down")).click();
-	    driver.findElement(By.xpath("//li[3]/ul/li/a/span")).click();
-	    driver.findElement(By.xpath("//li[3]/ul/li/ul/li[2]/a/span")).click();
-	    driver.findElement(By.xpath("//button/span")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[4]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[4]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("refTest");
-	    driver.findElement(By.xpath("(//input[@type='text'])[5]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[5]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[5]")).sendKeys("test referentiel");
-	    driver.findElement(By.xpath("//div/button[2]/span[2]")).click();
-	    driver.findElement(By.linkText("2Axe stratégique")).click();
-	    driver.findElement(By.xpath("//button/span")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[3]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[3]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys("a1");
-	    driver.findElement(By.xpath("(//input[@type='text'])[4]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[4]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[4]")).sendKeys("test axe");
-	    driver.findElement(By.xpath("//div/button[2]/span[2]")).click();
-	    driver.findElement(By.xpath("//li[3]/a/span[2]")).click();
-	    driver.findElement(By.xpath("//button/span")).click();
-	    driver.findElement(By.xpath("//span[@id='dropdown']/span/p-dropdown/div")).click();
-	    driver.findElement(By.xpath("//span[@id='dropdown']/span/p-dropdown/div/div[4]/div[2]/ul/p-dropdownitem[2]/li")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[5]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[5]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[5]")).sendKeys("sa1");
-	    driver.findElement(By.xpath("(//input[@type='text'])[6]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[6]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[6]")).sendKeys("test sous axe");
-	    driver.findElement(By.xpath("//div/button[2]/span[2]")).click();
+		//test go here 
 	}
 
 	
