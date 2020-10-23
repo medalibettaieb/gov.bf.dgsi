@@ -2,12 +2,17 @@ package template;
 
 import static org.testng.Assert.fail;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -53,43 +58,43 @@ public class ModelTestReport {
 	}
 
 	@BeforeTest
-    public void startReport() {
-        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") +"/test-output/testReport.html");
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
-        htmlReporter.config().setChartVisibilityOnOpen(true);
-        htmlReporter.config().setDocumentTitle("Extent Report Demo");
-        htmlReporter.config().setReportName("Test Report");
-        htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
-        htmlReporter.config().setTheme(Theme.STANDARD);
-        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
-    }
+	public void startReport() {
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/testReport.html");
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
+		htmlReporter.config().setChartVisibilityOnOpen(true);
+		htmlReporter.config().setDocumentTitle("Extent Report Demo");
+		htmlReporter.config().setReportName("Test Report");
+		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+		htmlReporter.config().setTheme(Theme.STANDARD);
+		htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+	}
 
 	@Test(priority = 0, enabled = true)
 	public void test() throws Exception {
 		test = extent.createTest("testCalendrierBudgRecord", "PASSED test case");
-		//test go here 
+		// code goes here
+		//takeScreenshot();
 	}
 
-	
-	 @AfterMethod
-	    public void getResult(ITestResult result) {
-	        if(result.getStatus() == ITestResult.FAILURE) {
-	            test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" FAILED ", ExtentColor.RED));
-	            test.fail(result.getThrowable());
-	        }
-	        else if(result.getStatus() == ITestResult.SUCCESS) {
-	            test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" PASSED ", ExtentColor.GREEN));
-	        }
-	        else {
-	            test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" SKIPPED ", ExtentColor.ORANGE));
-	            test.skip(result.getThrowable());
-	        }
-	    }
-	 @AfterTest
-	    public void tearDownR() {
-	        extent.flush();
-	    }
+	@AfterMethod
+	public void getResult(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			test.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " FAILED ", ExtentColor.RED));
+			test.fail(result.getThrowable());
+		} else if (result.getStatus() == ITestResult.SUCCESS) {
+			test.log(Status.PASS, MarkupHelper.createLabel(result.getName() + " PASSED ", ExtentColor.GREEN));
+		} else {
+			test.log(Status.SKIP, MarkupHelper.createLabel(result.getName() + " SKIPPED ", ExtentColor.ORANGE));
+			test.skip(result.getThrowable());
+		}
+	}
+
+	@AfterTest
+	public void tearDownR() {
+		extent.flush();
+	}
+
 	@AfterClass(alwaysRun = true)
 	public void tearDown() throws Exception {
 		extent.flush();
@@ -99,6 +104,7 @@ public class ModelTestReport {
 			fail(verificationErrorString);
 		}
 	}
+
 	private boolean isElementPresent(By by) {
 		try {
 			driver.findElement(by);
@@ -107,6 +113,7 @@ public class ModelTestReport {
 			return false;
 		}
 	}
+
 	private boolean isAlertPresent() {
 		try {
 			driver.switchTo().alert();
@@ -115,6 +122,7 @@ public class ModelTestReport {
 			return false;
 		}
 	}
+
 	private String closeAlertAndGetItsText() {
 		try {
 			Alert alert = driver.switchTo().alert();
@@ -129,9 +137,16 @@ public class ModelTestReport {
 			acceptNextAlert = true;
 		}
 	}
+
 	private WebElement waitForElementVisibility(String xpath) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 		return element;
+	}
+
+	private void takeScreenshot() throws IOException {
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		// Now you can do whatever you need to do with it, for example copy somewhere
+		FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir") + "/test-output/screenshot.png"));
 	}
 }
