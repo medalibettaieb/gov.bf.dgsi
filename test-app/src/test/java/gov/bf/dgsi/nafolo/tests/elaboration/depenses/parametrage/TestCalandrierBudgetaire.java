@@ -57,18 +57,18 @@ public class TestCalandrierBudgetaire {
 
 	@BeforeTest
 	public void startReport() {
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/testReport.html");
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/ReportCalandrierBudgetaire.html");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 		htmlReporter.config().setChartVisibilityOnOpen(true);
-		htmlReporter.config().setDocumentTitle("Extent Report Demo");
-		htmlReporter.config().setReportName("Test Report");
+		htmlReporter.config().setDocumentTitle("Report Calandrier Budgetaire");
+		htmlReporter.config().setReportName("Report Calandrier Budgetaire");
 		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
-		htmlReporter.config().setTheme(Theme.STANDARD);
+		htmlReporter.config().setTheme(Theme.DARK);
 		htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void testCalendrierBudgRecord() throws Exception {
 		test = extent.createTest("testCalendrierBudgRecord", "PASSED test case");
 		driver.get(
@@ -114,7 +114,7 @@ public class TestCalandrierBudgetaire {
 		}
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void testCalendrierBudgModify() throws Exception {
 		test = extent.createTest("testCalendrierBudgModify", "PASSED test case");
 		driver.get(
@@ -138,7 +138,7 @@ public class TestCalandrierBudgetaire {
 						.click();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void testCalendrierBudgDelete() throws Exception {
 		test = extent.createTest("testCalendrierBudgDelete", "PASSED test case");
 		driver.get(

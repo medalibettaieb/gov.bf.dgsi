@@ -2,16 +2,19 @@
     <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
     <suite name="SuiteB"  > 
     <!-- suite name="Suite Name" --> 
-                 <test name="TestB1" allow-return-values="true">
-                         <classes>
-                           <!-- packagename.Testcase class name  -->
-                                 <class name ="com.qtpselenium.suiteB.TestCaseB1" />
-                         </classes>
-                 </test>
-                 <test name="TestB2" allow-return-values="true">
-                         <classes>
-                           <!-- packagename.Testcase class name  -->
-                                 <class name ="com.qtpselenium.suiteB.TestCaseB2" />
-                         </classes>
-                 </test>
+                	<!-- suite name="Suite Name" -->
+	<test name="rapport1" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class
+				name="gov.bf.dgsi.nafolo.tests.utils.Rapport1" />
+		</classes>
+	</test>
+	<test name="rapport2" allow-return-values="true">
+		<classes>
+			<!-- packagename.Testcase class name -->
+			<class
+				name="gov.bf.dgsi.nafolo.tests.utils.Rapport2" />
+		</classes>
+	</test>
 </suite>

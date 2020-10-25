@@ -1,4 +1,4 @@
-package gov.bf.dgsi.nafolo.tests.elaboration.depenses.parametrage;
+package gov.bf.dgsi.nafolo.tests.utils;
 
 import static org.testng.Assert.fail;
 
@@ -36,7 +36,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class TestClassificationAdministrative {
+public class Rapport1 {
 	private ExtentHtmlReporter htmlReporter;
 	private ExtentReports extent;
 	private ExtentTest test;
@@ -59,38 +59,24 @@ public class TestClassificationAdministrative {
 
 	@BeforeTest
 	public void startReport() {
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/ReportClassificationAdministrative.html");
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/testReport.html");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 		htmlReporter.config().setChartVisibilityOnOpen(true);
 		htmlReporter.config().setDocumentTitle("Extent Report Demo");
 		htmlReporter.config().setReportName("Test Report");
 		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
-		htmlReporter.config().setTheme(Theme.STANDARD);
+		htmlReporter.config().setTheme(Theme.DARK);
 		htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
 	}
 
-	@Test(priority = 0, enabled = false)
-	  public void testCreationTypeSection() throws Exception {
-		test = extent.createTest("testCreationTypeSection", "PASSED test case");
-	    driver.get("http://10.5.27.201:8086");
-	    driver.findElement(By.id("username")).click();
-	    driver.findElement(By.id("username")).clear();
-	    driver.findElement(By.id("username")).sendKeys("sanou@nafolo.bf");
-	    driver.findElement(By.id("password")).clear();
-	    driver.findElement(By.id("password")).sendKeys("test123");
-	    driver.findElement(By.id("kc-login")).click();
-	    driver.findElement(By.xpath("//app-menu/ul/li[2]/a/span")).click();
-	    driver.findElement(By.linkText("buildDépenseskeyboard_arrow_down")).click();
-	    driver.findElement(By.xpath("//li[3]/ul/li/a/span")).click();
-	    driver.findElement(By.xpath("//li[3]/ul/li/ul/li[4]/a/span")).click();
-	    driver.findElement(By.xpath("//span[2]")).click();
-	    driver.findElement(By.xpath("//button/span")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[3]")).click();
-	    driver.findElement(By.xpath("(//input[@type='text'])[3]")).clear();
-	    driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys("Administration indépendante");
-	    driver.findElement(By.xpath("//div/button[2]/span[2]")).click();
-	  }
+	@Test(priority = 0, enabled = true)
+	public void test1() throws Exception {
+		test = extent.createTest("testCalendrierBudgRecord", "PASSED test case");
+		// code goes here
+		//takeScreenshot();
+	}
+
 	@AfterMethod
 	public void getResult(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE) {

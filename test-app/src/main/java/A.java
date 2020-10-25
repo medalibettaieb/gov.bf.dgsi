@@ -18,45 +18,40 @@ public class A {
 		System.setProperty("webdriver.chrome.driver", "WebDriver\\chromedriver.exe");
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+		
+		
+		
+		
 		driver.get(
-				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2Felab-calendrier-budgetaire&state=edeca422-4802-4caa-87a1-43d5c54457b1&response_mode=fragment&response_type=code&scope=openid&nonce=4dd5ce98-d6f9-4df0-958b-d6caada99e39");
+				"http://10.5.27.201:18080/auth/realms/dgsi/protocol/openid-connect/auth?client_id=sinafolo&redirect_uri=http%3A%2F%2F10.5.27.201%3A8086%2F&state=1ec044d8-1e93-43f4-b914-6ae54b536a60&response_mode=fragment&response_type=code&scope=openid&nonce=089183db-1263-4e05-97a1-07e2a36e3cc8");
 		driver.findElement(By.id("username")).click();
 		driver.findElement(By.id("username")).clear();
 		driver.findElement(By.id("username")).sendKeys("sanou@nafolo.bf");
-		driver.findElement(By.id("password")).click();
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("test123");
 		driver.findElement(By.id("kc-login")).click();
-
-		waitForElementVisibility("//app-menu/ul/li[2]/a/span").click();
-		waitForElementVisibility("//li[2]/ul/li[3]/a/span").click();
-		waitForElementVisibility("//li[3]/ul/li/a/span").click();
-		waitForElementVisibility("//li[3]/ul/li/ul/li/a/span").click();
-		waitForElementVisibility("//button/span").click();
-		waitForElementVisibility("(//input[@type='text'])[3]").click();
-		waitForElementVisibility("//p-dialog/div/div/div[2]").click();
-		waitForElementVisibility("(//input[@type='text'])[3]").click();
-		waitForElementVisibility("(//input[@type='text'])[3]").clear();
-		waitForElementVisibility("(//input[@type='text'])[3]").sendKeys("BUDGET ETAT EXERCICE 2025");
-		Thread.sleep(2000);
-		waitForElementVisibility("(//input[@type='text'])[4]").click();
-		waitForElementVisibility("(//input[@type='text'])[4]").clear();
-		waitForElementVisibility("(//input[@type='text'])[4]").sendKeys("01/01/2025");
-		Thread.sleep(2000);
-		waitForElementVisibility("(//input[@type='text'])[3]").click();
 		
-		Thread.sleep(2000);
-		//waitForElementVisibility("//div/div/div/div[3]").click();
-		waitForElementVisibility("(//input[@type='text'])[5]").click();
-		waitForElementVisibility("(//input[@type='text'])[5]").clear();
-		waitForElementVisibility("(//input[@type='text'])[5]").sendKeys("31/12/2025");
-		waitForElementVisibility("(//input[@type='text'])[4]").click();Thread.sleep(2000);
-		waitForElementVisibility("//div/button[2]/span[2]").click();
-//		waitForElementVisibility("//div/div/div/div[3]").click();
-//		waitForElementVisibility("(//input[@type='text'])[5]").click();
-//		waitForElementVisibility("(//input[@type='text'])[5]").clear();
-//		waitForElementVisibility("(//input[@type='text'])[5]").sendKeys("31/12/2025");
-//		waitForElementVisibility("//a[2]/span").click();
+		driver.findElement(By.xpath("//app-menu/ul/li[2]/a/span")).click();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[1]/app-menu/ul/li[2]/ul/li[3]/a/span")
+				.click();
+		waitForElementVisibility("//li[3]/ul/li/a/span").click();
+		waitForElementVisibility("//li[3]/ul/li/ul/li[2]/a/span").click();
+		
+		
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/p-steps/div/ul/li[1]/a/span[2]").click();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[4]/button[1]/span[1]").click();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[2]/p-celleditor/input").click();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[2]/p-celleditor/input").clear();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[2]/p-celleditor/input").sendKeys("new");
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[3]/p-celleditor/input").click();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[3]/p-celleditor/input").clear();
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[3]/p-celleditor/input").sendKeys("new");
+		waitForElementVisibility("/html/body/app-root/app-main/div/div/div[2]/div/app-step-parametrage-axe/div/app-elab-strategie/app-ref-page/div/div/div/p-table/div/div/table/tbody/tr[1]/td[4]/button[1]/span[1]").click();
+		
+		
+		
+		
 	}
 
 	private static WebElement waitForElementVisibility(String xpath) {
